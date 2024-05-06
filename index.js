@@ -7,7 +7,7 @@ function createResumePDFButton() {
   resumePDFButton.appendChild(buttonText);
 
   resumePDFButton.addEventListener("click", function (event) {
-    window.open("Resume PDF.pdf", "_blank");
+    window.open("GuntasJammuResume.pdf", "_blank");
   });
 
   return resumePDFButton;
@@ -46,7 +46,9 @@ function displayEducationalBackground() {
     I then enrolled in UMKC in the Fall of 2021, and I have been working towards getting my BS in Computer Science as well as getting a business degree. After getting these degrees, I want to work towards getting a Masters in Computer Science as well. 
     `
   );
+
   displayDiv.innerHTML = "";
+  displayDiv.appendChild(createElementWithTextNode("h3", "Educational Background"));
 
   educationalBackgroundTag.appendChild(educationalBackgroundText);
 
@@ -178,6 +180,158 @@ function createCoursesTaken() {
   return ul;
 }
 
+function createElementWithTextNode(element, text) {
+  const x = document.createElement(element);
+  const y = document.createTextNode(text);
+  x.appendChild(y);
+  return x;
+}
+
+function displaySkills() {
+  const displayDiv = getDisplayDiv();
+
+  const softSkills = [
+    "Hardworking",
+    "Driven",
+    "Leader",
+    "Communicator",
+    "Problem Solver",
+    "Adaptable",
+    "Creative",
+    "Team Player"
+  ];
+
+  const hardSkills = [
+    "Java", "Kotlin", "C++", "C#", "Python", "Javascript", "Spring Boot", "PostgreSQL", "Firebase", "Bootstrap"
+  ];
+
+  const hardSkillsList = document.createElement("ul");
+  hardSkills.forEach((hardSkill => {
+    const li = document.createElement("li");
+    const liText = document.createTextNode(hardSkill);
+    li.appendChild(liText);
+    hardSkillsList.appendChild(li);
+  }));
+
+  const softSkillsList = document.createElement("ul");
+  softSkills.forEach((softSkill => {
+    const li = document.createElement("li");
+    const liText = document.createTextNode(softSkill);
+    li.appendChild(liText);
+    softSkillsList.appendChild(li);
+  }));
+
+ 
+
+  displayDiv.innerHTML = "";
+
+  displayDiv.appendChild(createElementWithTextNode("h3", "Technical Skills"));
+  displayDiv.appendChild(softSkillsList);
+  displayDiv.appendChild(createElementWithTextNode("h3", "Soft Skills"));
+  displayDiv.appendChild(hardSkillsList);
+}
+
+function displayProjects() {
+  const displayDiv = getDisplayDiv();
+  const projects = [
+    `Income Management Tracker: Created an income management tracker using Java Swing that can keep track of income and expenses, 
+    as well as provide options to filter, search, and sort. Used JDBC and MySQL to create a database 
+    and have the program interact with it to store and retrieve information. Project was structured using Agile development principles`,
+
+    `Hindi Audio Translator: Utilized AssemblyAI API using REST API principals to create a GUI based application that records Hindi audio and
+    translates it to English. Interacted with Java Sound API as well as the Cloud Translation API by Google to handle translation. 
+    Implemented the GUI using Java Swing while keeping sound concurrency principles to effectively multithread the application.`,
+
+    `Spotify API Client: Created a desktop client for Spotify's API in Kotlin that was capable of carrying out common functions such as
+    finding songs, playlists, artists, etc. Implemented security in guidelines with Spotify recommendations for the API`,
+
+    `Invoice Sorter: Created a program using Java that can sort trucking invoices by company and date for a trucking company. 
+    Once implemented, reduced the time it took for company staff to find invoices from minutes to seconds`
+  ];
+
+  const projectsList = document.createElement("ul");
+  projects.forEach((project =>  {
+    const li = document.createElement("li");
+    const liText = document.createTextNode(project);
+    li.appendChild(liText);
+    projectsList.appendChild(li);
+  }));
+
+  displayDiv.innerHTML = "";
+  displayDiv.appendChild(createElementWithTextNode("h3", "Projects"));
+  displayDiv.appendChild(projectsList);
+  
+}
+
+function createListItem(text) {
+  const li = document.createElement("li");
+  const liText = document.createTextNode(text);
+  li.appendChild(liText);
+  return li;
+}
+
+function displayContactInformation() {
+  const phoneNumber = "Phone Number: 913-291-8368";
+  const email = "Email: guntasjammu@gmail.com"
+
+  const ul = document.createElement("ul");
+  ul.setAttribute("style", "list-style-type: none")
+  ul.appendChild(createListItem(phoneNumber));
+  ul.appendChild(createListItem(email));
+
+  const displayDiv = getDisplayDiv();
+  displayDiv.innerHTML = "";
+  displayDiv.appendChild(createElementWithTextNode("h3", "Contact Information"))
+  displayDiv.appendChild(ul);
+
+
+}
+
+function displayWorkExperience() {
+  const date1 = "May 2022 - Present";
+  const date2 = "Sep 2021 - May 2022";
+
+
+  const r1 = `Responsible for giving robust tours, with special attention given towards communicating effectively UMKC's
+  message towards prospective students. Given currently over 75 student tours. Handle numerous questions by potential 
+  and current students on phone by clearly explaining and finding solutions quickly. Answer questions while on student panel from
+  prospective students and families by utilizing informative and persuasive techniques. ` 
+
+  const r2 = `Was part of the website team for FeedKC, a non-profit initiative to help provide a network to move food waste into
+  food shelters. Designed and implemented a map component to the website to help find connected food shelters of FeedKC.
+   Helped create a layout for display of the website on mobile devices.`
+
+  const ambassadorUL = document.createElement("ul");
+  const ambasaadorTitle = createListItem("UMKC Ambassador");
+  const ambassadorInnerUL = document.createElement("ul");
+
+  const enactusUL = document.createElement("ul");
+  const enactusTitle = createListItem("Website Developer");
+  const enactusInnerUL = document.createElement("ul");
+
+
+
+  ambassadorUL.appendChild(ambasaadorTitle);
+  ambassadorInnerUL.appendChild(createListItem(date1));
+  ambassadorInnerUL.appendChild(createListItem(r1));
+  ambassadorUL.appendChild(ambassadorInnerUL);
+
+  enactusUL.appendChild(enactusTitle);
+  enactusInnerUL.appendChild(createListItem(date2));
+  enactusInnerUL.appendChild(createListItem(r2));
+  enactusUL.appendChild(enactusInnerUL);
+
+  const displayDiv = getDisplayDiv();
+
+  displayDiv.innerHTML = "";
+  displayDiv.appendChild(createElementWithTextNode("h3", "Work Experience"));
+  displayDiv.appendChild(ambassadorUL);
+  displayDiv.appendChild(enactusUL);
+
+
+}
+
+
 function displayBio() {
   const displayDiv = getDisplayDiv();
   const bioTag = document.createElement("p");
@@ -213,5 +367,25 @@ window.addEventListener("load", function (event) {
     .getElementById("home")
     .addEventListener("click", function (event) {
       displayBio();
+    });
+  this.document
+    .getElementById("skills")
+    .addEventListener("click", function(event) {
+      displaySkills();
+    });
+  this.document
+    .getElementById("projects")
+    .addEventListener("click", function(event) {
+      displayProjects();
+    });
+    this.document
+    .getElementById("work-experience")
+    .addEventListener("click", function(event) {
+      displayWorkExperience();
+    });
+    this.document
+    .getElementById("contact-information")
+    .addEventListener("click", function(event) {
+      displayContactInformation();
     });
 });
